@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <h1>CartaNet</h1>
+        <h1> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet"/> </h1>
         <div class="ReservedAreaButtons"> 
             <!-- Aggiungere icone con php tramite template params -->
         </div>
