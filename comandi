@@ -1,0 +1,4 @@
+git add --all
+git commit -m "ciao pelatino"
+git push origin master
+git pull
