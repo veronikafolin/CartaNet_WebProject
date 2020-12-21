@@ -12,24 +12,34 @@
         endforeach;
     endif;
     ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <header>
-        <h1> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet"/> </h1>
+        <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
         <div class="ReservedAreaButtons"> 
             <!-- Aggiungere icone con php tramite template params -->
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="../Home.php">Home</a></li>
-            <li><a href="../Cartoleria.php">Cartoleria</a></li>
-            <li><a href="../Calendari.php">Calendari</a></li>
-            <li><a href="../Agende.php">Agende</a></li>
-        </ul>
-    </nav>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <ul class="navbar-nav">
+             <li class="nav-item active">
+                <a class="nav-link" href="./index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./cartoleria.php">Cartoleria</a>
+            </li>
+            <li class="nav-item">
+                 <a class="nav-link" href="./calendari.php">Calendari</a>
+             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./agende.php">Agende</a>
+            </li>
+         </ul>
+</nav>
     <main>
     <?php
         if(isset($templateParams["nomeFile"])){

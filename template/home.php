@@ -1,9 +1,9 @@
-<div class="search-container">
-    <form action="searchResults.php">
-      <input type="text" placeholder="Search.." name="search"/>
-      <input type="submit" name="serachButton" value="Go"/>
+<div class="search-container" style="float: right">
+    <form class="form-inline" action="/action_page.php">
+        <input class="form-control mr-sm-2" type="text" placeholder="Cerca...">
+        <button class="btn" type="submit" style="background-color: #a3ddf2">Vai</button>
     </form>
-  </div>
+</div>
 
 <section>
     <h2>Potrebbe interessarti</h2>
