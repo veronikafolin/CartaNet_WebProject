@@ -1,37 +1,51 @@
-<div class="search-container" style="float: right">
-    <form class="form-inline" action="/action_page.php">
-        <input class="form-control mr-sm-2" type="text" placeholder="Cerca...">
-        <button class="btn" type="submit" style="background-color: #a3ddf2">Vai</button>
-    </form>
-</div>
-
 <section>
-    <h2>Potrebbe interessarti</h2>
-    <?php foreach($templateParams["prodotti"] as $prodotto): ?>
-        <div>
-            <img src=<?php echo ".".$prodotto["Immagine"];?> alt=<?php echo "Immagine di ".$prodotto["NomeProdotto"];?> width="100" height="100"/>
-            <h3> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
-            <p> <?php echo $prodotto["Prezzo"]." €" ; ?></p>
-        </div>
-    <?php endforeach; ?>
+    <div class="search-container" id="searchBar" style="float: right; margin:10px 10px 0px 0px;">
+        <form class="form-inline" action="/action_page.php">
+            <input class="form-control mr-sm-2" type="text" placeholder="Cerca...">
+            <button class="btn" type="submit" style="background-color: #6d6e71; color: white">Vai</button>
+        </form>
+    </div>
+</section>
+
+<section style="margin: 80px; clear: both;">
+    <h2 >Potrebbe interessarti</h2>
+    <div class="container-fluid">
+    <div class="row" style="width: 100%"> 
+        <?php foreach($templateParams["prodotti"] as $prodotto): ?>
+            <div class="col-sm-6 col-xl-2" style="padding: 0px">
+                <center><img src=<?php echo ".".$prodotto["Immagine"];?> alt=<?php echo "Immagine di ".$prodotto["NomeProdotto"];?> width="100" height="100"/>
+                <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
+                <p style="font-weight: bold"> <?php echo $prodotto["Prezzo"]." €" ; ?></p> </center>
+             </div>
+         <?php endforeach; ?>
+    </div>
+    </div>
 </section>
 
 <section>
-
-    <div>
-        <img src="./res/Icone/Spedizioni.jpg" alt=""/> 
-        <p>Spedizioni gratuite*</p> 
-        <p>*Per ordini superiori ai 15€</p>
+<div class="container-fluid" style="align-items: center;">
+    <div class="row" style="width:70%; margin: 0% 15%; margin-bottom: 20px; border: 3px solid #a3ddf2;"> 
+    <div class="col">
+    <center>
+        <img src="./res/Icone/Spedizioni.jpeg" alt="" width=150px height=130px/> 
+        <p>Spedizioni gratuite</p>
+    </center>
     </div>
 
-    <div>
-        <img src="./res/Icone/Pagamenti.jpg" alt=""/> 
+    <div class="col">
+    <center>
+        <img src="./res/Icone/Pagamenti.jpeg" alt="" width=150px height=130px/> 
         <p>Pagamenti sicuri</p>
+    </center>
     </div>
 
-    <div>
-        <img src="./res/Icone/Resi.jpg" alt=""/>
+    <div class="col">
+    <center>
+        <img src="./res/Icone/Resi.jpeg" alt="" width=150px height=130px/>
         <p>Resi facili</p>
+    </center>
     </div>
-
+</div>
+</div>
 </section>
+

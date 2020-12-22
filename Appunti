@@ -1,0 +1,40 @@
+git add --all
+git commit -m "ciao pelatino"
+git push origin master
+git pull
+
+
+
+Azzurro: #a3ddf2
+Rosa: #f58e93
+Grigio: #6d6e71
+
+
+BS4 badge per notifiche
+
+
+
+Togli il mio account da mockup
+
+
+Cliente:
+
+home
+login
+registrazione
+i miei ordini
+dettaglio ordine
+Il mio carrello
+Riepilogo ordine
+Prodotto
+Categoria
+Chi siamo
+Informativa privacy
+
+Venditore:
+
+Storico ordini
+Dettaglio ordine
+Dettaglio Prodotto
+Modifica Prodotto
+Inserimento Prodotto
