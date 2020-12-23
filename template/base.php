@@ -34,7 +34,7 @@
                 <a class="nav-link" href="./index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./cartoleria.php">Cartoleria</a>
+                <a class="nav-link" href="./cancelleria.php">Cancelleria</a>
             </li>
             <li class="nav-item">
                  <a class="nav-link" href="./calendari.php">Calendari</a>
