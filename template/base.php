@@ -24,7 +24,7 @@
         <div class="ReservedAreaButtons" style="float:right; margin: 0px 10px 10px 0px"> 
             <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-user"></i></button>
             <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button>
-            <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button>
+            <a href="login.php"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button> </a>
         </div>
     </header>
 
