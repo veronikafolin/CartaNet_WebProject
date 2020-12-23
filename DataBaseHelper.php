@@ -44,6 +44,16 @@ class DatabaseHelper{
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["QuantitàResidua"];
     }
+
+    public function checkLogin($username, $password){
+        $query = "SELECT IdUtente, Nome, Email, Passoword, Tipo FROM Utente U, Credenziali C WHERE U.Email = C.Email AND Email = ? AND Password = ?";
+        $stmt = $this->db->prepare($query);
+        $hashedPassword = hash("sha256" ,$password, false);
+        $stmt->bind_param('ss',$username, $hashedPassword);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
