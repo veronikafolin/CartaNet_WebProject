@@ -35,7 +35,7 @@
                 <a class="nav-link" href="./agende.php">Agende</a>
             </li>
          </ul>
-    </nav>
+    </nav> 
     <main>
     <?php
         if(isset($templateParams["nomeFile"])){
