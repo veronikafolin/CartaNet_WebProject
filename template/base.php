@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <script src="js/functions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css"/> 
@@ -14,7 +17,14 @@
     <header>
         <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
         <div class="ReservedAreaButtons" style="float:right; margin: 0px 10px 10px 0px"> 
-            <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-user"></i></button>
+            <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle" style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" data-toggle="dropdown"><i class="fa fa-user"></i></button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+            </div>
             <a href="carrello.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>"><button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button></a>
             <a href="login.php"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button> </a>
         </div>

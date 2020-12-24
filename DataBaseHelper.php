@@ -65,18 +65,18 @@ class DatabaseHelper{
         $statement->bind_param('ii', $IdProdotto, $IdUtente);
         $statement->execute();
         $result = $statement->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC)[0];
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function updateShoppingCart($IdProdotto, $IdUtente){
-        $quantità = getQuantityFromShoppingCart($IdProdotto, $IdUtente);
-        if($quantità == 0){
+        $quantità = $this->getQuantityFromShoppingCart($IdProdotto, $IdUtente);
+        if(count($quantità) == 0){
             $statement = $this->db->prepare("INSERT INTO Prodotto_in_carrello(IdProdotto, IdUtente, Quantità) VALUES (?,?,1)");
             $statement->bind_param('ii', $IdProdotto, $IdUtente);
             $statement->execute();
         }
         else{
-            $quantità++; 
+            $quantità = $quantità[0]["Quantità"] + 1; 
             $statement = $this->db->prepare("UPDATE Prodotto_in_carrello SET Quantità = $quantità WHERE IdProdotto=? AND IdUtente=?");
             $statement->bind_param('ii', $IdProdotto, $IdUtente);
             $statement->execute();

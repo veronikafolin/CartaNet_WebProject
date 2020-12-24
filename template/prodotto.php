@@ -21,8 +21,7 @@ $prodotto = $templateParams["prodotto"];
                         echo '<button onclick="alertSoldOut()" type="button" class="btn btn-primary disabled">Aggiungi al carrello</button>';
                         break;
                     }
-                    updateShoppingCart($prodotto["IdProdotto"], $_SESSION["IdUtente"]);
-                    echo '<button onclick="confirmAddingToShoppingCart()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
+                    echo '<a href="template/updateShoppingCart.php?IdProdotto='.$prodotto["IdProdotto"].'"><button onclick="confirmAddingToShoppingCart()" type="button" class="btn btn-primary">Aggiungi al carrello</button></a>';
                     break;
                 case 2:
                     echo '<button type="button" class="btn btn-primary">Modifica prodotto</button>';
