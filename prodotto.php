@@ -6,5 +6,4 @@
     $templateParams["prodotto"] = $db->getProductById($_GET["IdProdotto"]);
     $templateParams["disponibilita"] = $db->isProductAvailable($_GET["IdProdotto"]);
     require_once("template/base.php");
-
 ?>

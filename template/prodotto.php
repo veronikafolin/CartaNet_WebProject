@@ -11,12 +11,20 @@ $prodotto = $templateParams["prodotto"];
             <p> <?php echo $prodotto["Descrizione"]; ?> </p>
             <p style="font-weight: bold"> <?php echo $prodotto["Prezzo"]." €" ; ?></p>
             <?php
+            $userLogged = isUserLoggedIn();
+            switch($userLogged){
+                case 0:
+                    echo '<button onclick="alertLogIn()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
+                    break;
+                case 1:
+                    echo '<button type="button" class="btn btn-primary">Aggiungi al carrello</button>';
+                case 2:
+                    echo '<button type="button" class="btn btn-primary">Modifica prodotto</button>';
+                    break;
+            }
             if($templateParams["disponibilita"] == 0){
                 echo '<p style="color:red"> Prodotto non disponibile </p>';
                 echo '<button type="button" class="btn btn-primary disabled">Aggiungi al carrello</button>';
-            }
-            else{
-                echo '<button onclick="alertLogIn()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
             }
             ?>
         </div>
