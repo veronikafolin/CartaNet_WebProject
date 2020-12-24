@@ -2,9 +2,9 @@
 
     require_once("constants.php");
 
-    if( isset($_POST["username"]) && isset( $_POST["password"]) ){
-        $login_result = $db->checkLogin($username, $password);
-        if(count($loginResult) == 0){
+    if (!empty($_POST["username"]) && !empty( $_POST["password"])){
+        $login_result = $db->checkLogin($_POST["username"], $_POST["password"]);
+        if(count($login_result) == 0){
             $templateParams["erroreLogin"] = "Errore! Controllare username o password";
         }else{
             registerLoggedUser($login_result[0]);
@@ -23,7 +23,8 @@
 
         case 1:
             $templateParams["titolo"] = "CartaNet - Home";
-            $templateParams["nomeFile"] = "index.php";
+            $templateParams["nomeFile"] = "home.php";
+            $templateParams["prodotti"] = $db->getProducts(24);
             break;
 
         case 2:
@@ -32,7 +33,4 @@
     }
 
     require_once("template/base.php");
-
-
-    
 ?>

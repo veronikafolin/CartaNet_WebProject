@@ -42,12 +42,13 @@ class DatabaseHelper{
     }
 
     public function checkLogin($username, $password){
-        $query = "SELECT IdUtente, Nome, Email, Passoword, Tipo FROM Utente U, Credenziali C WHERE U.Email = C.Email AND Email = ? AND Password = ?";
-        $stmt = $this->db->prepare($query);
-        $hashedPassword = hash("sha256" ,$password, false);
-        $stmt->bind_param('ss',$username, $hashedPassword);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $query = "SELECT U.IdUtente, U.Nome, C.Email, C.Password, U.Tipo FROM Utente U, Credenziali C WHERE U.Email = C.Email AND C.Email = ? AND C.Password = ?";
+        $statement = $this->db->prepare($query);
+        //$hashedPassword = hash("sha256" ,$password, false);
+        $statement->bind_param('ss', $username, $password);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
