@@ -17,14 +17,16 @@ $prodotto = $templateParams["prodotto"];
                     echo '<button onclick="alertLogIn()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
                     break;
                 case 1:
-                    echo '<button type="button" class="btn btn-primary">Aggiungi al carrello</button>';
+                    if($templateParams["disponibilita"] == 0){
+                        echo '<button onclick="alertSoldOut()" type="button" class="btn btn-primary disabled">Aggiungi al carrello</button>';
+                        break;
+                    }
+                    updateShoppingCart($prodotto["IdProdotto"], $_SESSION["IdUtente"]);
+                    echo '<button onclick="confirmAddingToShoppingCart()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
+                    break;
                 case 2:
                     echo '<button type="button" class="btn btn-primary">Modifica prodotto</button>';
                     break;
-            }
-            if($templateParams["disponibilita"] == 0){
-                echo '<p style="color:red"> Prodotto non disponibile </p>';
-                echo '<button type="button" class="btn btn-primary disabled">Aggiungi al carrello</button>';
             }
             ?>
         </div>

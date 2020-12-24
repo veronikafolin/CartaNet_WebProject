@@ -15,7 +15,7 @@
         <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
         <div class="ReservedAreaButtons" style="float:right; margin: 0px 10px 10px 0px"> 
             <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-user"></i></button>
-            <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button>
+            <a href="carrello.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>"><button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button></a>
             <a href="login.php"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button> </a>
         </div>
     </header>

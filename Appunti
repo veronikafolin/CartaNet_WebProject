@@ -13,13 +13,14 @@ Grigio: #6d6e71
 BS4 badge per notifiche
 
 
-
-Togli il mio account da mockup
+mockup:
+Togli "il mio account"
+Togliere possibilità di modificare quantità nel carrello
 
 
 Cliente:
 
-home                    (randomizzare scelta dei prodotti da visualizzare)
+home                    OK
 login
 registrazione
 i miei ordini
@@ -27,14 +28,15 @@ dettaglio ordine
 Il mio carrello
 Riepilogo ordine
 Prodotto                OK
-Categoria
+Categoria               OK
 Chi siamo
 Informativa privacy
+Risultati ricerca
 
 Venditore:
 
 Storico ordini
 Dettaglio ordine
-Dettaglio Prodotto
+Dettaglio Prodotto      OK
 Modifica Prodotto
 Inserimento Prodotto
