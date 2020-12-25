@@ -17,12 +17,12 @@
     <header>
         <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
         <div class="ReservedAreaButtons" style="float:right; margin: 0px 10px 10px 0px"> 
-            <div class="dropdown">
-                    <button type="button" class="btn dropdown-toggle" style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" data-toggle="dropdown"><i class="fa fa-user"></i></button>
+            <div class="dropdown" style="display:inline">
+                    <button type="button" class="dropdown-toggle" style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" data-toggle="dropdown"><i class="fa fa-user"></i></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Link 1</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
+                        <a class="dropdown-item" href="#">I miei ordini</a>
+                        <a class="dropdown-item" href="#">I miei messaggi</a>
+                        <a class="dropdown-item" href="#">Esci</a>
                     </div>
             </div>
             <a href="carrello.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>"><button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button></a>
@@ -54,18 +54,10 @@
     ?>
     </main>
 
-    <footer style="text-align: center; border-top: 1px black solid; background-color: #a3ddf2;">
+    <footer style="text-align: center; border-top: 1px black solid; background-color: #a3ddf2; padding: 10px 0px;">
         <p style="margin-top: 10px">  
             &#174 CartaNet S.r.l. <br>
-            Via dell'Università, 50 47521 Cesena (FC) <br>
-            P.IVA 00000000000 <br>
-            <nav>
-                <ul class="nav justify-content-center" style="list-style: none">
-                    <li class="nav-item"><a class="nav-link" style="color: black; text-decoration:underline;" href="../Home.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" style="color: black; text-decoration:underline;" href="../InformativaPrivacy.php">Informativa Privacy</a></li>
-                    <li class="nav-item"><a class="nav-link" style="color: black; text-decoration:underline;" href="../ChiSiamo.php">Chi siamo</a></li>
-                </ul>
-            </nav>
+            Via dell'Università, 50 47521 Cesena (FC)
         </p>
     </footer>
 

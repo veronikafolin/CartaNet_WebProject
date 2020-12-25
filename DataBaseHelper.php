@@ -82,6 +82,14 @@ class DatabaseHelper{
             $statement->execute();
         }
     }
+
+    public function searchProducts($stringa){
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE NomeProdotto LIKE '%?%'");
+        $statement->bind_param('s', $stringa);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
