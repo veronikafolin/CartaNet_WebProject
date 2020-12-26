@@ -10,8 +10,7 @@ class DatabaseHelper{
     }
 
     public function getProducts($n){
-
-        $statement = $this->db->prepare("SELECT IdProdotto,Immagine, NomeProdotto, Prezzo FROM Prodotto LIMIT ?");
+        $statement = $this->db->prepare("SELECT IdProdotto,Immagine, NomeProdotto, Prezzo FROM Prodotto ORDER BY RAND() LIMIT ?");
         $statement->bind_param('i', $n);
         $statement->execute();
         $result = $statement->get_result();
@@ -19,7 +18,6 @@ class DatabaseHelper{
     }
 
     public function getProductsFromCategory($category){
-
         $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE Categoria=?");
         $statement->bind_param('s', $category);
         $statement->execute();
@@ -27,19 +25,17 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getProductById($n){
-
-        $statement = $this->db->prepare("SELECT Immagine, NomeProdotto, Descrizione, Prezzo FROM Prodotto WHERE IDProdotto=?");
-        $statement->bind_param('i', $n);
+    public function getProductById($IdProdotto){
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Descrizione, Prezzo FROM Prodotto WHERE IDProdotto=?");
+        $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
 
-    public function isProductAvailable($n){
-
+    public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
-        $statement->bind_param('i', $n);
+        $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["QuantitàResidua"];
@@ -69,6 +65,45 @@ class DatabaseHelper{
         $statement = $this->db->prepare($queryUtente);
         $statement->bind_param("sssss", $email, $nome, $cognome, $indirizzo, $tipo);
         $statement->execute();
+    }
+
+    public function getProductsInShoppingCart($IdUtente){
+        $statement = $this->db->prepare("SELECT NomeProdotto, Prezzo, Immagine, Quantità FROM Prodotto_in_carrello PC JOIN Prodotto P ON (PC.IdProdotto = P.IdProdotto) WHERE IdUtente=?");
+        $statement->bind_param('i', $IdUtente);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getQuantityFromShoppingCart($IdProdotto, $IdUtente){
+        $statement = $this->db->prepare("SELECT Quantità FROM Prodotto_in_carrello WHERE IdProdotto=? AND IdUtente=?");
+        $statement->bind_param('ii', $IdProdotto, $IdUtente);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateShoppingCart($IdProdotto, $IdUtente){
+        $quantità = $this->getQuantityFromShoppingCart($IdProdotto, $IdUtente);
+        if(count($quantità) == 0){
+            $statement = $this->db->prepare("INSERT INTO Prodotto_in_carrello(IdProdotto, IdUtente, Quantità) VALUES (?,?,1)");
+            $statement->bind_param('ii', $IdProdotto, $IdUtente);
+            $statement->execute();
+        }
+        else{
+            $quantità = $quantità[0]["Quantità"] + 1; 
+            $statement = $this->db->prepare("UPDATE Prodotto_in_carrello SET Quantità = $quantità WHERE IdProdotto=? AND IdUtente=?");
+            $statement->bind_param('ii', $IdProdotto, $IdUtente);
+            $statement->execute();
+        }
+    }
+
+    public function searchProducts($stringa){
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE NomeProdotto LIKE '%?%'");
+        $statement->bind_param('s', $stringa);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 
