@@ -182,6 +182,14 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getInfoOrder($IdOrdine){
+        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data, S.Descrizione, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdOrdine=?");
+        $statement->bind_param('i', $IdOrdine);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
     public function getDettaglioOrdine($IdOrdine){
         $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, DO.Quantità FROM Dettaglio_ordine DO JOIN Prodotto P ON (DO.IdProdotto = P.IdProdotto) WHERE DO.IdOrdine=?");
         $statement->bind_param('i', $IdOrdine);

@@ -24,14 +24,14 @@ Ricerca prodotti            V   Mandata mail a Delnevo per operatore LIKE
 Cliente:
 registrazione           OK  D
 i miei ordini           OK  V   
-dettaglio ordine            V
+dettaglio ordine        OK  V
 Il mio carrello         OK  V   chiedere per codice PHP da inserire in JS
-I miei messaggi             D
+I miei messaggi         OK  D
 
 Venditore:
 Storico ordini
 Dettaglio ordine
-Dettaglio Prodotto          V   OK
+Dettaglio Prodotto      OK  V   
 Modifica Prodotto
 Inserimento Prodotto
 
