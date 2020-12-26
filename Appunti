@@ -11,20 +11,21 @@ Grigio: #6d6e71
 
 
 BS4 badge per notifiche
+Per allineare al centro: https://www.w3schools.com/css/tryit.asp?filename=trycss3_align_flex
 
 Generale:
 Esci                    OK  D
 home                    OK  VD
 login                   OK  D
-Prodotto                    V   chiedere per codice PHP da inserire in JS
+Prodotto                OK  V   chiedere per codice PHP da inserire in JS
 Categoria               OK  V
 Ricerca prodotti            V   Mandata mail a Delnevo per operatore LIKE
 
 Cliente:
 registrazione           OK  D
-i miei ordini
-dettaglio ordine
-Il mio carrello             V   chiedere per codice PHP da inserire in JS
+i miei ordini           OK  V   
+dettaglio ordine            V
+Il mio carrello         OK  V   chiedere per codice PHP da inserire in JS
 I miei messaggi             D
 
 Venditore:

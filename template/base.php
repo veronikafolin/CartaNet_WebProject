@@ -21,7 +21,7 @@
             <div class="dropdown" style="display:inline">
                     <button type="button" class="dropdown-toggle" style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" data-toggle="dropdown"><i class="fa fa-user"></i></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">I miei ordini</a>
+                        <a class="dropdown-item" href="mieiOrdini.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">I miei ordini</a>
                         <a class="dropdown-item" href="notifiche.php">I miei messaggi</a>
                     </div>
             </div >

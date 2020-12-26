@@ -123,9 +123,18 @@ class DatabaseHelper{
         $statement->execute();
     }
 
-    public function insertOrdine($IdUtente){
-        $statement = $this->db->prepare("INSERT INTO Ordine(Data, IdUtente) VALUES (CURDATE(), ?)");
-        $statement->bind_param('i', $IdUtente);
+    public function CalculateTotale($IdUtente){
+        $prodottiInCarrello = $this->getProductsInShoppingCart($_SESSION["IdUtente"]);
+        $totale = 0;
+        foreach($prodottiInCarrello as $prodotto){
+            $totale = $totale + ($prodotto["Prezzo"] * $prodotto["Quantità"]);
+        }
+        return $totale;
+    }
+
+    public function insertOrdine($totale, $IdUtente){
+        $statement = $this->db->prepare("INSERT INTO Ordine(Data, Totale, IdUtente) VALUES (CURDATE(),?,?)");
+        $statement->bind_param('ii',  $totale, $IdUtente);
         $statement->execute();
         $statement = $this->db->prepare("SELECT MAX(IdOrdine) as IdOrdine FROM Ordine");
         $statement->execute();
@@ -138,6 +147,17 @@ class DatabaseHelper{
         foreach($prodottiInCarrello as $prodotto){
             $statement = $this->db->prepare("INSERT INTO Dettaglio_ordine(IdProdotto, IdOrdine, Quantità) VALUES (?,?,?)");
             $statement->bind_param('iii', $prodotto["IdProdotto"], $IdOrdine, $prodotto["Quantità"]);
+            $statement->execute();
+        }
+    }
+
+    public function updateProductAvailability($IdOrdine){
+        $prodottiOrdinati = $this->getDettaglioOrdine($IdOrdine);
+        foreach($prodottiOrdinati as $prodotto){
+            $quantitàResidua = $this->isProductAvailable($prodotto["IdProdotto"]);
+            $quantitàResidua = $quantitàResidua - $prodotto["Quantità"];
+            $statement = $this->db->prepare("UPDATE Prodotto SET QuantitàResidua=? WHERE IdProdotto=?");
+            $statement->bind_param('ii', $quantitàResidua, $prodotto["IdProdotto"]);
             $statement->execute();
         }
     }
@@ -155,6 +175,20 @@ class DatabaseHelper{
         $statement->execute();
     }
 
-}
+    public function getOrdersById($IdUtente){
+        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data, S.Descrizione, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdUtente=?");
+        $statement->bind_param('i', $IdUtente);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
+    public function getDettaglioOrdine($IdOrdine){
+        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, DO.Quantità FROM Dettaglio_ordine DO JOIN Prodotto P ON (DO.IdProdotto = P.IdProdotto) WHERE DO.IdOrdine=?");
+        $statement->bind_param('i', $IdOrdine);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+}
 ?>
