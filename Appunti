@@ -12,30 +12,25 @@ Grigio: #6d6e71
 
 BS4 badge per notifiche
 
-
-Mockup:
-Togli "il mio account"
-Togliere possibilità di modificare quantità nel carrello
-
 Generale:
-Esci
-home                    OK
-login                   OK
-Prodotto                OK
-Categoria               OK
-Ricerca prodotti        Mandata mail a Delnevo per operatore LIKE
+Esci                    OK  D
+home                    OK  VD
+login                   OK  D
+Prodotto                    V   chiedere per codice PHP da inserire in JS
+Categoria               OK  V
+Ricerca prodotti            V   Mandata mail a Delnevo per operatore LIKE
 
 Cliente:
-registrazione   
+registrazione           OK  D
 i miei ordini
 dettaglio ordine
-Il mio carrello         Sistemare rinvio pagina e chiedere per codice PHP da inserire in JS, aggiungere bottone Ordina
-I miei messaggi
+Il mio carrello             V   chiedere per codice PHP da inserire in JS
+I miei messaggi             D
 
 Venditore:
 Storico ordini
 Dettaglio ordine
-Dettaglio Prodotto      OK
+Dettaglio Prodotto          V   OK
 Modifica Prodotto
 Inserimento Prodotto
 

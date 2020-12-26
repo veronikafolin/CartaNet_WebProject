@@ -9,3 +9,7 @@ function alertLogIn() {
 function confirmAddingToShoppingCart(){
       alert("Prodotto aggiunto al carrello");
 }
+
+function orderOK(){
+      alert("Ordine effettuato con successo!");
+}
