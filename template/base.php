@@ -16,17 +16,25 @@
 <body>
     <header>
         <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
+        <?php if( isUserLoggedIn() == 1 ): ?>
         <div class="ReservedAreaButtons" style="float:right; margin: 0px 10px 10px 0px"> 
             <div class="dropdown" style="display:inline">
                     <button type="button" class="dropdown-toggle" style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" data-toggle="dropdown"><i class="fa fa-user"></i></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="mieiOrdini.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">I miei ordini</a>
-                        <a class="dropdown-item" href="#">I miei messaggi</a>
-                        <a class="dropdown-item" href="#">Esci</a>
+                        <a class="dropdown-item" href="notifiche.php">I miei messaggi</a>
                     </div>
-            </div>
+            </div >
+            <?php endif ?>
+            <?php if( isUserLoggedIn() == 1 ): ?>
             <a href="carrello.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>"><button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-shopping-cart"></i></button></a>
-            <a href="login.php"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button> </a>
+            <?php endif ?>
+            <?php if( isUserLoggedIn() == 0 ): ?>
+            <a href="login.php"> <button style="float:right; background-color: #6d6e71; border: none; color: white; padding: 12px 16px; margin:0 10px 10px 0; font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-in"></i></button> </a>
+            <?php endif ?>
+            <?php if( isUserLoggedIn() == 1 ): ?>
+            <a href="logout.php"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px;  font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-out"></i></button> </a>
+            <?php endif ?>
         </div>
     </header>
 

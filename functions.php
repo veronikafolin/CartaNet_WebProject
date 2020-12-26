@@ -6,6 +6,15 @@
         $_SESSION["Tipo"] = $user["Tipo"];
     }
 
+    function logout(){
+        unset($_SESSION["IdUtente"]) ;
+        unset($_SESSION["Email"]);
+        unset($_SESSION["Nome"]);
+        unset($_SESSION["Tipo"]);
+        session_destroy();
+    }
+
+
     function isUserLoggedIn(){
         $logged = 0;
         if(!empty($_SESSION['IdUtente'])){
