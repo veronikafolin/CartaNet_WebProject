@@ -35,7 +35,6 @@ class DatabaseHelper{
 
     public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
-        print_r($this->db->error_list);
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -190,5 +189,15 @@ class DatabaseHelper{
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getProductsBySupplier($IdSupplier){
+        $query = "SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE IdUtente = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param('i', $IdSupplier);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 ?>

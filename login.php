@@ -19,18 +19,20 @@
         case 0:
             $templateParams["titolo"] = "CartaNet - Login";
             $templateParams["nomeFile"] = "login-form.php";
+            require_once("template/base.php");
             break;
-
         case 1:
             $templateParams["titolo"] = "CartaNet - Home";
             $templateParams["nomeFile"] = "home.php";
             $templateParams["prodotti"] = $db->getProducts(24);
+            require_once("template/base.php");
             break;
 
         case 2:
             //pagina del venditore loggato
+            $templateParams["titolo"] = "CartaNet - Home Venditore";
+            $templateParams["nomeFile"] = "homeVenditore.php";
+            require_once("template/baseVenditore.php");
             break;
     }
-
-    require_once("template/base.php");
 ?>
