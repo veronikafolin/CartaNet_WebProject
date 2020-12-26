@@ -5,16 +5,16 @@
         <article>
             <header>
                 <?php if($notifica["Letto"] == 0): ?>
-                    <h2 style="color: red;"> Notifica <?php echo $notifica["IdNotifica"]?> </h2>
+                    <h2 style="color: red;"> <?php echo $notifica["Oggetto"]?> </h2>
                 <?php else: ?>
-                    <h2> Notifica <?php echo $notifica["IdNotifica"]?> </h2>
+                    <h2> <?php echo $notifica["Oggetto"] ?>  </h2>
                 <?php endif ?>
                 <p>Data: <?php echo $notifica["Data"]?> </p>
             </header>
 
             <section>
-                <?php echo $notifica["Oggetto"]?>
-                <a href='./template/notifica.php?IdNotifica=<?php echo $notifica["IdNotifica"] ?>' > <button name="Leggi notifica"> Leggi notifica </button></a>
+                <?php echo $notifica["Testo"]?>
+                <a href="leggiNotifica.php?IdNotifica=<?php echo $notifica["IdNotifica"]; ?>" > <button name="SegnaLetta"> Segna come letta </button> </a>
             </section>
         </article>
     <?php endforeach ?>

@@ -35,6 +35,7 @@ class DatabaseHelper{
 
     public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
+        print_r($this->db->error_list);
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -107,7 +108,7 @@ class DatabaseHelper{
     }
 
     public function getNotifications($IdUtente){
-        $query = "SELECT IdNotifica, Data, Oggetto, Letto FROM Notifica WHERE IdUtente = ?";
+        $query = "SELECT IdNotifica, Data, Oggetto, Letto, Testo FROM Notifica WHERE IdUtente = ?";
         $statement = $this->db->prepare($query);
         $statement->bind_param("i", $IdUtente);
         $statement->execute();
@@ -115,7 +116,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
 
     }
-    
+
     public function resetShoppingCart($IdUtente){
         $statement = $this->db->prepare("DELETE FROM Prodotto_in_carrello WHERE IdUtente=?");
         $statement->bind_param('i', $IdUtente);
@@ -146,6 +147,14 @@ class DatabaseHelper{
         $statement->bind_param('i', $IdOrdine);
         $statement->execute();
     }
+
+    public function setRead($IdNotifica){
+        $query = "UPDATE Notifica SET Letto = 1 WHERE IdNotifica = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $IdNotifica);
+        $statement->execute();
+    }
+
 }
 
 ?>
