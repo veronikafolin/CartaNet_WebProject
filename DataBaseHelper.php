@@ -105,6 +105,15 @@ class DatabaseHelper{
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getNotifications($IdUtente){
+        $query = "SELECT IdNotifica, Data, Oggetto, Letto FROM Notifica WHERE IdUtente = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $IdUtente);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
