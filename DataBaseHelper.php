@@ -35,7 +35,6 @@ class DatabaseHelper{
 
     public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
-        print_r($this->db->error_list);
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -181,6 +180,14 @@ class DatabaseHelper{
         $statement->execute();
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getInfoOrder($IdOrdine){
+        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data, S.Descrizione, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdOrdine=?");
+        $statement->bind_param('i', $IdOrdine);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
 
     public function getDettaglioOrdine($IdOrdine){
