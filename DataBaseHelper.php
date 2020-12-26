@@ -68,7 +68,7 @@ class DatabaseHelper{
     }
 
     public function getProductsInShoppingCart($IdUtente){
-        $statement = $this->db->prepare("SELECT NomeProdotto, Prezzo, Immagine, Quantità FROM Prodotto_in_carrello PC JOIN Prodotto P ON (PC.IdProdotto = P.IdProdotto) WHERE IdUtente=?");
+        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, PC.Quantità FROM Prodotto_in_carrello PC JOIN Prodotto P ON (PC.IdProdotto = P.IdProdotto) WHERE PC.IdUtente=?");
         $statement->bind_param('i', $IdUtente);
         $statement->execute();
         $result = $statement->get_result();
@@ -113,6 +113,38 @@ class DatabaseHelper{
         $statement->execute();
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+
+    }
+    
+    public function resetShoppingCart($IdUtente){
+        $statement = $this->db->prepare("DELETE FROM Prodotto_in_carrello WHERE IdUtente=?");
+        $statement->bind_param('i', $IdUtente);
+        $statement->execute();
+    }
+
+    public function insertOrdine($IdUtente){
+        $statement = $this->db->prepare("INSERT INTO Ordine(Data, IdUtente) VALUES (CURDATE(), ?)");
+        $statement->bind_param('i', $IdUtente);
+        $statement->execute();
+        $statement = $this->db->prepare("SELECT MAX(IdOrdine) as IdOrdine FROM Ordine");
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["IdOrdine"];
+    }
+
+    public function insertDettaglioOrdine($IdOrdine){
+        $prodottiInCarrello = $this->getProductsInShoppingCart($_SESSION["IdUtente"]);
+        foreach($prodottiInCarrello as $prodotto){
+            $statement = $this->db->prepare("INSERT INTO Dettaglio_ordine(IdProdotto, IdOrdine, Quantità) VALUES (?,?,?)");
+            $statement->bind_param('iii', $prodotto["IdProdotto"], $IdOrdine, $prodotto["Quantità"]);
+            $statement->execute();
+        }
+    }
+
+    public function insertStatoOrdine($IdOrdine){
+        $statement = $this->db->prepare("INSERT INTO Stato_ordine(Descrizione, Data, IdOrdine) VALUES ('Confermato',CURDATE(),?)");
+        $statement->bind_param('i', $IdOrdine);
+        $statement->execute();
     }
 }
 
