@@ -100,7 +100,8 @@ class DatabaseHelper{
     }
 
     public function searchProducts($stringa){
-        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE NomeProdotto LIKE '%?%'");
+        $stringa = '%'.$stringa.'%';
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE NomeProdotto LIKE ?");
         $statement->bind_param('s', $stringa);
         $statement->execute();
         $result = $statement->get_result();
@@ -185,7 +186,7 @@ class DatabaseHelper{
     }
 
     public function getOrdersById($IdUtente){
-        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data, S.Descrizione, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdUtente=?");
+        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data as DataOrdine, S.Descrizione, S.Data as DataStato, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdUtente=?");
         $statement->bind_param('i', $IdUtente);
         $statement->execute();
         $result = $statement->get_result();
@@ -193,7 +194,7 @@ class DatabaseHelper{
     }
 
     public function getInfoOrder($IdOrdine){
-        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data, S.Descrizione, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdOrdine=?");
+        $statement = $this->db->prepare("SELECT O.IdOrdine, O.Data as DataOrdine, S.Descrizione, S.Data as DataStato, O.Totale FROM Ordine O JOIN Stato_ordine S ON (O.IdOrdine = S.IdOrdine) WHERE O.IdOrdine=?");
         $statement->bind_param('i', $IdOrdine);
         $statement->execute();
         $result = $statement->get_result();
@@ -228,6 +229,20 @@ class DatabaseHelper{
         $query = "INSERT INTO Notifica (Oggetto, Testo, Data, Letto, IdUtente) VALUES (?, ?, CURDATE(), ?, ?)";
         $statement = $this->db->prepare($query);
         $statement->bind_param("sssii", $oggetto, $testo, $letto, $IdUtente);
+
+    }
+    
+    public function getOrders(){
+        $query = "SELECT O.IdOrdine, U.Nome, U.Cognome, O.Data as DataOrdine, S.Descrizione, S.Data as DataStato, O.Totale FROM Ordine O, Stato_ordine S, Utente U WHERE O.IdOrdine=S.IdOrdine AND O.IdUtente=U.IdUtente";
+        $statement = $this->db->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateStatoOrdine($statoOrdine, $IdOrdine){
+        $statement = $this->db->prepare("UPDATE Stato_ordine SET Descrizione=?, Data=CURDATE() WHERE IdOrdine=?");
+        $statement->bind_param('si', $statoOrdine, $IdOrdine);
         $statement->execute();
     }
 }

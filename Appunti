@@ -17,25 +17,29 @@ Generale:
 Esci                    OK  D
 home                    OK  VD
 login                   OK  D
-Prodotto                OK  V   chiedere per codice PHP da inserire in JS
+Prodotto                OK  V   
 Categoria               OK  V
-Ricerca prodotti            V   Mandata mail a Delnevo per operatore LIKE
+Ricerca prodotti        OK  V  
 
 Cliente:
 registrazione           OK  D
 i miei ordini           OK  V   
 dettaglio ordine        OK  V
-Il mio carrello         OK  V   chiedere per codice PHP da inserire in JS
+Il mio carrello         OK  V   utilizzare funzione per calcolare il totale del carrello e quando inserisco l'ordine metterlo nel campo totale di ordine
 I miei messaggi         OK  D
 
 Venditore:
-Storico ordini
-Dettaglio ordine
+Storico ordini          OK  V
+Modifica stato ordine   OK  V
 Dettaglio Prodotto      OK  V   
 Modifica Prodotto       
 Inserimento Prodotto
 
-Se abbbiamo tempo:
-Aggiungere bottone indietro
-Chi siamo
-Informativa privacy
+Notifiche:
+conferma ordine C
+cambio stato ordine C
+ordine ricevuto V 
+finita disponibilità prodtto V 
+
+Se abbiamo tempo:
+reso e annullamento ordine da parte del cliente
