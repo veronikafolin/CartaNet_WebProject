@@ -10,4 +10,5 @@
     $Immagine = $_POST["Immagine"];
 
     $db->aggiungiProdotto($NomePrdotto, $Descrizione, $Prezzo, $Disponibilità, $Categoria, "/res/".$Categoria."/".$Immagine, $_SESSION["IdUtente"]);
+    header("location:./gestioneprodotti.php");
 ?>

@@ -26,7 +26,7 @@ class DatabaseHelper{
     }
 
     public function getProductById($IdProdotto){
-        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Descrizione, Prezzo FROM Prodotto WHERE IDProdotto=?");
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Descrizione, QuantitàResidua, Prezzo, Categoria FROM Prodotto WHERE IDProdotto=?");
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -35,7 +35,6 @@ class DatabaseHelper{
 
     public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
-        print_r($this->db->error_list);
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -167,7 +166,7 @@ class DatabaseHelper{
                 $testo = "La disponibilità del prodotto si è azzerata, provvedere al rifornimento";
                 $letto = 0;
                 $IdUtente = 2;
-                $db->notify($oggetto, $testo, $letto, $IdUtente);
+                $this->notify($oggetto, $testo, $letto, $IdUtente);
             }
         }
     }
@@ -221,15 +220,15 @@ class DatabaseHelper{
     public function aggiungiProdotto($nome, $descrizione, $prezzo, $disponibilità, $categoria, $path, $fornitore){
         $query = "INSERT INTO Prodotto (NomeProdotto, Prezzo, QuantitàResidua, Immagine, Descrizione, Categoria, IdUtente) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("sfisssi", $nome, $descrizione, $prezzo, $disponibilità, $categoria, $path, $fornitore );
+        $statement->bind_param("sdisssi", $nome, $prezzo, $disponibilità, $path, $descrizione,  $categoria,  $fornitore );
         $statement->execute();
     }
 
     public function notify($oggetto, $testo, $letto, $IdUtente){
         $query = "INSERT INTO Notifica (Oggetto, Testo, Data, Letto, IdUtente) VALUES (?, ?, CURDATE(), ?, ?)";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("sssii", $oggetto, $testo, $letto, $IdUtente);
-
+        $statement->bind_param("ssii", $oggetto, $testo, $letto, $IdUtente);
+        $statement->execute();
     }
     
     public function getOrders(){

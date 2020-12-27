@@ -30,14 +30,9 @@ I miei messaggi         OK  D
 
 Venditore:
 Storico ordini          OK  V
-<<<<<<< HEAD
-Modifica stato ordine   OK  V  
-Modifica Prodotto
-=======
 Modifica stato ordine   OK  V
 Dettaglio Prodotto      OK  V   
 Modifica Prodotto       
->>>>>>> 2ee6e66c935e0d8b0cfee37b2b15a0139be4d409
 Inserimento Prodotto
 
 Notifiche:
