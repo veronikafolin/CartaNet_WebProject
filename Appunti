@@ -25,7 +25,7 @@ Cliente:
 registrazione           OK  D
 i miei ordini           OK  V   
 dettaglio ordine        OK  V
-Il mio carrello         OK  V   utilizzare funzione per calcolare il totale del carrello e quando inserisco l'ordine metterlo nel campo totale di ordine
+Il mio carrello         OK  V   
 I miei messaggi         OK  D
 
 Venditore:
@@ -33,13 +33,13 @@ Storico ordini          OK  V
 Modifica stato ordine   OK  V
 Dettaglio Prodotto      OK  V   
 Modifica Prodotto       
-Inserimento Prodotto
+Inserimento Prodotto    OK  D
 
 Notifiche:
-conferma ordine C
-cambio stato ordine C
-ordine ricevuto V 
-finita disponibilità prodtto V 
+conferma ordine         OK  D
+cambio stato ordine 
+ordine ricevuto         OK  D
+finita disponibilità    OK  D
 
 Se abbiamo tempo:
 reso e annullamento ordine da parte del cliente

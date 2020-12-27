@@ -9,15 +9,25 @@
                 <div class="col-sm-3 col-xl-3" style="padding: 0px">
                     <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
                     <p>Quantità: <?php echo $prodotto["Quantità"]; ?> <br/>
-                    <?php $totale = $prodotto["Prezzo"] * $prodotto["Quantità"]; ?>
-                    Totale: <?php echo $totale." €" ; ?></p> 
+                    <?php $totaleProdotto = $prodotto["Prezzo"] * $prodotto["Quantità"]; ?>
+                    Totale: <?php echo $totaleProdotto." €" ; ?></p> 
                 </div>
             </div>
         <?php endforeach; ?>
-        <center>
-        <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
-        <button onclick="orderOK()" type="button" class="btn btn-primary">Ordina</button>
-        </a>
-        </center>
+        <?php if($totaleCarrello !=0): ?>
+            <div class="row" style="width: 100%"> 
+                <p>Totale carrello: <?php echo $totaleCarrello."€" ?></p>
+            </div>
+            <div class="row" style="width: 100%"> 
+                <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
+                <button onclick="orderOK()" type="button" class="btn btn-primary">Ordina</button>
+                </a>
+            </div>
+        <?php endif; ?>
+        <?php if($totaleCarrello ==0): ?>
+            <div class="row" style="width: 100%"> 
+                <p> Il carrello è vuoto </p>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
