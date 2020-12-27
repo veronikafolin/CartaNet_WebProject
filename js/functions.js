@@ -13,3 +13,7 @@ function confirmAddingToShoppingCart(){
 function orderOK(){
       alert("Ordine effettuato con successo!");
 }
+
+function modificaOrdineOK(){
+      alert("Modifica stato dell'ordine effettuata!");
+}

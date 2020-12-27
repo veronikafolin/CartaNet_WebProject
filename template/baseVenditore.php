@@ -31,7 +31,7 @@
                 <a class="nav-link" href="./gestioneprodotti.php">Gestione prodotti</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="#">Gestione ordini</a>
+                 <a class="nav-link" href="./gestioneordini.php">Gestione ordini</a>
              </li>
          </ul>
     </nav> 

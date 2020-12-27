@@ -208,5 +208,15 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getOrders(){
+        $query = "SELECT O.IdOrdine, U.Nome, U.Cognome, O.Data, S.Descrizione, O.Totale FROM Ordine O, Stato_ordine S, Utente U WHERE O.IdOrdine=S.IdOrdine AND O.IdUtente=U.IdUtente";
+        $statement = $this->db->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+
 }
 ?>

@@ -29,13 +29,17 @@ Il mio carrello         OK  V   chiedere per codice PHP da inserire in JS
 I miei messaggi         OK  D
 
 Venditore:
-Storico ordini
-Dettaglio ordine
+Storico ordini          OK  V
+Modifica stato ordine
 Dettaglio Prodotto      OK  V   
 Modifica Prodotto
 Inserimento Prodotto
 
-Se abbbiamo tempo:
-Aggiungere bottone indietro
-Chi siamo
-Informativa privacy
+Notifiche:
+conferma ordine C
+cambio stato ordine C
+ordine ricevuto V 
+finita disponibilità prodtto V 
+
+Se abbiamo tempo:
+reso e annullamento ordine da parte del cliente

@@ -5,12 +5,14 @@
              <div class="row" style="width: 100%; border-bottom: 1px solid black; padding: 10px 0px;"> 
                  <div class="col-sm-3 col-xl-6" style="padding: 0px">
                     <h3> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </h3>
-                    <p>Data Ordine: <?php echo $ordine["Data"]; ?> </br>
+                    <p>
+                    Data Ordine: <?php echo $ordine["Data"]; ?> </br>
                     Stato Ordine: <?php echo $ordine["Descrizione"]; ?> </br>
-                    Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?></p> 
+                    Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?>
+                    </p> 
                  </div>
                  <div class="col-sm-3 col-xl-6" style="padding: 0px; align-items: center; justify-content: center; display: flex;">
-                     <a href="dettaglioOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];  ?>">
+                    <a href="dettaglioOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];  ?>">
                     <button type="button" class="btn btn-primary">Vedi dettagli ordine</button>
                     </a>
                  </div>
