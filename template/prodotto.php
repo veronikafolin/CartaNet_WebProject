@@ -24,7 +24,7 @@ $prodotto = $templateParams["prodotto"];
                     echo '<a href="updateShoppingCart.php?IdProdotto='.$prodotto["IdProdotto"].'><button onclick="confirmAddingToShoppingCart()" type="button" class="btn btn-primary">Aggiungi al carrello</button></a>';
                     break;
                 case 2:
-                    echo '<button type="button" class="btn btn-primary">Modifica prodotto</button>';
+                    echo '<a href="modificaProdotto.php?IdProdotto='.$prodotto["IdProdotto"].'><button type="button" class="btn btn-primary">Modifica prodotto</button> </a>';
                     break;
             }
             ?>

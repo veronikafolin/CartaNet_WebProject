@@ -33,6 +33,9 @@
             <li class="nav-item">
                  <a class="nav-link" href="#">Gestione ordini</a>
              </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="notifiche.php">Le mie notifiche</a>
+             </li>
          </ul>
     </nav> 
     <main>

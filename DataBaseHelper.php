@@ -35,6 +35,7 @@ class DatabaseHelper{
 
     public function isProductAvailable($IdProdotto){
         $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
+        print_r($this->db->error_list);
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -158,6 +159,15 @@ class DatabaseHelper{
             $statement = $this->db->prepare("UPDATE Prodotto SET QuantitàResidua=? WHERE IdProdotto=?");
             $statement->bind_param('ii', $quantitàResidua, $prodotto["IdProdotto"]);
             $statement->execute();
+
+            //Notifica al venditore
+            if($quantitàResidua == 0){
+                $oggetto = "Finita disponibilità prodotto".$prodotto["IdProdotto"];
+                $testo = "La disponibilità del prodotto si è azzerata, provvedere al rifornimento";
+                $letto = 0;
+                $IdUtente = 2;
+                $db->notify($oggetto, $testo, $letto, $IdUtente);
+            }
         }
     }
 
@@ -207,5 +217,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function aggiungiProdotto($nome, $descrizione, $prezzo, $disponibilità, $categoria, $path, $fornitore){
+        $query = "INSERT INTO Prodotto (NomeProdotto, Prezzo, QuantitàResidua, Immagine, Descrizione, Categoria, IdUtente) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("sfisssi", $nome, $descrizione, $prezzo, $disponibilità, $categoria, $path, $fornitore );
+        $statement->execute();
+    }
+
+    public function notify($oggetto, $testo, $letto, $IdUtente){
+        $query = "INSERT INTO Notifica (Oggetto, Testo, Data, Letto, IdUtente) VALUES (?, ?, CURDATE(), ?, ?)";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("sssii", $oggetto, $testo, $letto, $IdUtente);
+        $statement->execute();
+    }
 }
 ?>
