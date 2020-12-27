@@ -198,5 +198,15 @@ class DatabaseHelper{
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getProductsBySupplier($IdSupplier){
+        $query = "SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE IdUtente = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param('i', $IdSupplier);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 ?>
