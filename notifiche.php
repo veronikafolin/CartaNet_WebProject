@@ -4,6 +4,12 @@
     $templateParams["titolo"] = "CartaNet - Notifiche";
     $templateParams["nomeFile"] = "template/notifiche.php";
     $templateParams["notifiche"] = $db->getNotifications($_SESSION["IdUtente"]);
-    require_once("template/base.php");
+    
+    if($_SESSION["Tipo"] == "Cliente"){
+        require_once("template/base.php");
+    }else{
+        require_once("template/baseVenditore.php");
+    }
+   
 
 ?>
