@@ -19,7 +19,7 @@ home                    OK  VD
 login                   OK  D
 Prodotto                OK  V   chiedere per codice PHP da inserire in JS
 Categoria               OK  V
-Ricerca prodotti            V   Mandata mail a Delnevo per operatore LIKE
+Ricerca prodotti        OK  V  
 
 Cliente:
 registrazione           OK  D
