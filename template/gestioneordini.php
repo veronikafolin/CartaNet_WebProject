@@ -7,24 +7,22 @@
                         <h3> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </h3>
                         <p>
                         Ordinato da: <?php echo $ordine["Nome"]." ".$ordine["Cognome"]; ?> </br>
-                        Data Ordine: <?php echo $ordine["Data"]; ?> </br>
-                        Stato Ordine: <?php echo $ordine["Descrizione"]; ?> </br>
+                        Data Ordine: <?php echo $ordine["DataOrdine"]; ?> </br>
+                        Stato Ordine: <?php echo $ordine["Descrizione"]; ?> il <?php echo $ordine["DataStato"]; ?></br>
                         Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?>
                         </p> 
                     </div>
-                    <form class="col-sm-3 col-xl-6" action="aggiungi.php" method="post" style="margin-top: 20px"> 
+                    <form class="col-sm-3 col-xl-6" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post" style="margin-top: 20px"> 
                         <div class="form-group" >
                             <label for="StatoOrdine" style="display:inline">Modifica stato ordine:</label>
                             <select style="height:auto; width:auto;" class="form-control" name="StatoOrdine" id="StatoOrdine">
-                                <option value="Confermato"> Confermato </option>
-                                <option value="InConsegna"> In Consegna</option>
-                                <option value="Consegnato"> Consegnato </option>
+                                <option value="Confermato">Confermato</option>
+                                <option value="In Consegna">In Consegna</option>
+                                <option value="Consegnato">Consegnato</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <a href="modificaOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];  ?>">
-                            <button onclick="modificaOrdineOK()" type="button" class="btn btn-primary">Conferma modifica</button>
-                            </a>
+                            <input onclick="updateOrderOK()" type="submit" class="btn btn-primary" value="Conferma modifica"/>
                         </div>
                     </form>
                 </div>

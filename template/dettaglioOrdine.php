@@ -4,8 +4,8 @@
         <div class="row" style="width: 100%"> 
             <div class="col-sm-3 col-xl-6" style="padding: 0px">
                 <p> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </br>
-                Data Ordine: <?php echo $ordine["Data"]; ?> </br>
-                Stato Ordine: <?php echo $ordine["Descrizione"]; ?> </br>
+                Data Ordine: <?php echo $ordine["DataOrdine"]; ?> </br>
+                Stato Ordine: <?php echo $ordine["Descrizione"]; ?> il <?php echo $ordine["DataStato"]; ?></br>
                 Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?></p> 
             </div>
         </div>

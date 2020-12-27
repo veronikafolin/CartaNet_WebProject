@@ -14,6 +14,6 @@ function orderOK(){
       alert("Ordine effettuato con successo!");
 }
 
-function modificaOrdineOK(){
+function updateOrderOK(){
       alert("Modifica stato dell'ordine effettuata!");
 }
