@@ -19,8 +19,8 @@
                 </div>
                 <div class="col-sm-3 col-xl-6" style="padding: 0px">
                     <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
-                    <p>Quantità: <?php echo $prodotto["Quantità"]; ?> <br/>
-                    <?php $totale = $prodotto["Prezzo"] * $prodotto["Quantità"]; ?>
+                    <p>Quantità: <?php echo $prodotto["Quantita"]; ?> <br/>
+                    <?php $totale = $prodotto["Prezzo"] * $prodotto["Quantita"]; ?>
                     Totale: <?php echo $totale." €" ; ?></p> 
                 </div>
             </div>

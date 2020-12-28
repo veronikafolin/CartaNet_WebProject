@@ -24,9 +24,6 @@
 
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#a3ddf2; clear:both;">
         <ul class="navbar-nav">
-             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="./gestioneprodotti.php">Gestione prodotti</a>
             </li>
