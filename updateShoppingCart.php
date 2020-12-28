@@ -3,5 +3,5 @@ require_once("constants.php");
 
 $db->updateShoppingCart($_GET["IdProdotto"], $_SESSION["IdUtente"]);
 
-header("location:./prodotto.php?IdProdotto=".$_GET["IdProdotto"]);
+header("location:./carrello.php?IdUtente=$_SESSION[IdUtente]");
 ?>

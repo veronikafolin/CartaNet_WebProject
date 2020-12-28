@@ -14,10 +14,20 @@
                 </div>
             </div>
         <?php endforeach; ?>
-        <center>
-        <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
-        <button onclick="orderOK()" type="button" class="btn btn-primary">Ordina</button>
-        </a>
-        </center>
+        <?php if($totaleCarrello !=0): ?>
+            <div class="row" style="width: 100%"> 
+                <p>Totale carrello: <?php echo $totaleCarrello."€" ?></p>
+            </div>
+            <div class="row" style="width: 100%"> 
+                <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
+                <button onclick="orderOK()" type="button" class="btn btn-primary">Ordina</button>
+                </a>
+            </div>
+        <?php endif; ?>
+        <?php if($totaleCarrello ==0): ?>
+            <div class="row" style="width: 100%"> 
+                <p> Il carrello è vuoto </p>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
