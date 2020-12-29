@@ -1,3 +1,4 @@
+
 <?php if( count($templateParams["notifiche"]) == 0 ): ?>
 <p> Nessuna notifica presente </p>
 <?php else: ?>

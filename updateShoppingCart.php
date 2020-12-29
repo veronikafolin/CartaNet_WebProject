@@ -1,7 +1,11 @@
 <?php
-require_once("constants.php");
+    require("constants.php");
 
-$db->updateShoppingCart($_GET["IdProdotto"], $_SESSION["IdUtente"]);
+    if(isUserLoggedIn() == 1){
+        $db->updateShoppingCart($_GET["IdProdotto"], $_SESSION["IdUtente"]);
+        header("location:./carrello.php?IdUtente=$_SESSION[IdUtente]");
+    }else{
+        header("location:./login.php");
+    }
 
-header("location:./carrello.php?IdUtente=$_SESSION[IdUtente]");
 ?>

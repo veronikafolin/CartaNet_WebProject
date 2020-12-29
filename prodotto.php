@@ -1,5 +1,5 @@
 <?php
-    require_once("constants.php");
+    require("constants.php");
 
     $templateParams["titolo"] = "CartaNet - Dettaglio Prodotto";
     $templateParams["nomeFile"] = "template/prodotto.php";

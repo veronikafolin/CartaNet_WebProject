@@ -1,5 +1,5 @@
 <?php
-    require_once("constants.php");
+    require("constants.php");
 
     $templateParams["titolo"] = "CartaNet - Cancelleria";
     $templateParams["nomeFile"] = "template/cancelleria.php";
