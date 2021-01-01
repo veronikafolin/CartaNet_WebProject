@@ -8,9 +8,9 @@
                 </div>
                 <div class="col-sm-3 col-xl-3" style="padding: 0px">
                     <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
-                    <p>Quantità: <?php echo $prodotto["Quantità"]; ?> <br/>
-                    <?php $totaleProdotto = $prodotto["Prezzo"] * $prodotto["Quantità"]; ?>
-                    Totale: <?php echo $totaleProdotto." €" ; ?></p> 
+                    <p>Quantità: <?php echo $prodotto["Quantita"]; ?> <br/>
+                    <?php $totale = $prodotto["Prezzo"] * $prodotto["Quantita"]; ?>
+                    Totale: <?php echo $totale." €" ; ?></p> 
                 </div>
             </div>
         <?php endforeach; ?>
@@ -31,3 +31,4 @@
         <?php endif; ?>
     </div>
 </section>
+

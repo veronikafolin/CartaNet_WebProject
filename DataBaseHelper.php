@@ -17,6 +17,13 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function countProducts(){
+        $statement = $this->db->prepare("SELECT Count(IdProdotto) as NumeroProdotti FROM Prodotto");
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["NumeroProdotti"];
+    }
+
     public function getProductsFromCategory($category){
         $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE Categoria=?");
         $statement->bind_param('s', $category);
@@ -26,7 +33,7 @@ class DatabaseHelper{
     }
 
     public function getProductById($IdProdotto){
-        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Descrizione, QuantitàResidua, Prezzo, Categoria FROM Prodotto WHERE IDProdotto=?");
+        $statement = $this->db->prepare("SELECT IdProdotto, Immagine, NomeProdotto, Descrizione, QuantitaResidua, Prezzo, Categoria FROM Prodotto WHERE IDProdotto=?");
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
@@ -34,11 +41,11 @@ class DatabaseHelper{
     }
 
     public function isProductAvailable($IdProdotto){
-        $statement = $this->db->prepare("SELECT QuantitàResidua FROM Prodotto WHERE IdProdotto=?");
+        $statement = $this->db->prepare("SELECT QuantitaResidua FROM Prodotto WHERE IdProdotto=?");
         $statement->bind_param('i', $IdProdotto);
         $statement->execute();
         $result = $statement->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC)[0]["QuantitàResidua"];
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["QuantitaResidua"];
     }
 
     public function checkLogin($username, $password){
@@ -68,7 +75,7 @@ class DatabaseHelper{
     }
 
     public function getProductsInShoppingCart($IdUtente){
-        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, PC.Quantità FROM Prodotto_in_carrello PC JOIN Prodotto P ON (PC.IdProdotto = P.IdProdotto) WHERE PC.IdUtente=?");
+        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, PC.Quantita FROM Prodotto_in_carrello PC JOIN Prodotto P ON (PC.IdProdotto = P.IdProdotto) WHERE PC.IdUtente=?");
         $statement->bind_param('i', $IdUtente);
         $statement->execute();
         $result = $statement->get_result();
@@ -76,7 +83,7 @@ class DatabaseHelper{
     }
 
     public function getQuantityFromShoppingCart($IdProdotto, $IdUtente){
-        $statement = $this->db->prepare("SELECT Quantità FROM Prodotto_in_carrello WHERE IdProdotto=? AND IdUtente=?");
+        $statement = $this->db->prepare("SELECT Quantita FROM Prodotto_in_carrello WHERE IdProdotto=? AND IdUtente=?");
         $statement->bind_param('ii', $IdProdotto, $IdUtente);
         $statement->execute();
         $result = $statement->get_result();
@@ -86,13 +93,13 @@ class DatabaseHelper{
     public function updateShoppingCart($IdProdotto, $IdUtente){
         $quantità = $this->getQuantityFromShoppingCart($IdProdotto, $IdUtente);
         if(count($quantità) == 0){
-            $statement = $this->db->prepare("INSERT INTO Prodotto_in_carrello(IdProdotto, IdUtente, Quantità) VALUES (?,?,1)");
+            $statement = $this->db->prepare("INSERT INTO Prodotto_in_carrello(IdProdotto, IdUtente, Quantita) VALUES (?,?,1)");
             $statement->bind_param('ii', $IdProdotto, $IdUtente);
             $statement->execute();
         }
         else{
-            $quantità = $quantità[0]["Quantità"] + 1; 
-            $statement = $this->db->prepare("UPDATE Prodotto_in_carrello SET Quantità = $quantità WHERE IdProdotto=? AND IdUtente=?");
+            $quantità = $quantità[0]["Quantita"] + 1; 
+            $statement = $this->db->prepare("UPDATE Prodotto_in_carrello SET Quantita = $quantità WHERE IdProdotto=? AND IdUtente=?");
             $statement->bind_param('ii', $IdProdotto, $IdUtente);
             $statement->execute();
         }
@@ -127,14 +134,14 @@ class DatabaseHelper{
         $prodottiInCarrello = $this->getProductsInShoppingCart($_SESSION["IdUtente"]);
         $totale = 0;
         foreach($prodottiInCarrello as $prodotto){
-            $totale = $totale + ($prodotto["Prezzo"] * $prodotto["Quantità"]);
+            $totale = $totale + ($prodotto["Prezzo"] * $prodotto["Quantita"]);
         }
         return $totale;
     }
 
     public function insertOrdine($totale, $IdUtente){
         $statement = $this->db->prepare("INSERT INTO Ordine(Data, Totale, IdUtente) VALUES (CURDATE(),?,?)");
-        $statement->bind_param('ii',  $totale, $IdUtente);
+        $statement->bind_param('di',  $totale, $IdUtente);
         $statement->execute();
         $statement = $this->db->prepare("SELECT MAX(IdOrdine) as IdOrdine FROM Ordine");
         $statement->execute();
@@ -145,8 +152,8 @@ class DatabaseHelper{
     public function insertDettaglioOrdine($IdOrdine){
         $prodottiInCarrello = $this->getProductsInShoppingCart($_SESSION["IdUtente"]);
         foreach($prodottiInCarrello as $prodotto){
-            $statement = $this->db->prepare("INSERT INTO Dettaglio_ordine(IdProdotto, IdOrdine, Quantità) VALUES (?,?,?)");
-            $statement->bind_param('iii', $prodotto["IdProdotto"], $IdOrdine, $prodotto["Quantità"]);
+            $statement = $this->db->prepare("INSERT INTO Dettaglio_ordine(IdProdotto, IdOrdine, Quantita) VALUES (?,?,?)");
+            $statement->bind_param('iii', $prodotto["IdProdotto"], $IdOrdine, $prodotto["Quantita"]);
             $statement->execute();
         }
     }
@@ -155,8 +162,8 @@ class DatabaseHelper{
         $prodottiOrdinati = $this->getDettaglioOrdine($IdOrdine);
         foreach($prodottiOrdinati as $prodotto){
             $quantitàResidua = $this->isProductAvailable($prodotto["IdProdotto"]);
-            $quantitàResidua = $quantitàResidua - $prodotto["Quantità"];
-            $statement = $this->db->prepare("UPDATE Prodotto SET QuantitàResidua=? WHERE IdProdotto=?");
+            $quantitàResidua = $quantitàResidua - $prodotto["Quantita"];
+            $statement = $this->db->prepare("UPDATE Prodotto SET QuantitaResidua=? WHERE IdProdotto=?");
             $statement->bind_param('ii', $quantitàResidua, $prodotto["IdProdotto"]);
             $statement->execute();
 
@@ -201,26 +208,17 @@ class DatabaseHelper{
     }
 
     public function getDettaglioOrdine($IdOrdine){
-        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, DO.Quantità FROM Dettaglio_ordine DO JOIN Prodotto P ON (DO.IdProdotto = P.IdProdotto) WHERE DO.IdOrdine=?");
+        $statement = $this->db->prepare("SELECT P.IdProdotto, P.NomeProdotto, P.Prezzo, P.Immagine, DO.Quantita FROM Dettaglio_ordine DO JOIN Prodotto P ON (DO.IdProdotto = P.IdProdotto) WHERE DO.IdOrdine=?");
         $statement->bind_param('i', $IdOrdine);
         $statement->execute();
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getProductsBySupplier($IdSupplier){
-        $query = "SELECT IdProdotto, Immagine, NomeProdotto, Prezzo FROM Prodotto WHERE IdUtente = ?";
+    public function aggiungiProdotto($nome, $descrizione, $prezzo, $disponibilità, $categoria, $path){
+        $query = "INSERT INTO Prodotto (NomeProdotto, Prezzo, QuantitaResidua, Immagine, Descrizione, Categoria) VALUES (?, ?, ?, ?, ?, ?)";
         $statement = $this->db->prepare($query);
-        $statement->bind_param('i', $IdSupplier);
-        $statement->execute();
-        $result = $statement->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function aggiungiProdotto($nome, $descrizione, $prezzo, $disponibilità, $categoria, $path, $fornitore){
-        $query = "INSERT INTO Prodotto (NomeProdotto, Prezzo, QuantitàResidua, Immagine, Descrizione, Categoria, IdUtente) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $statement = $this->db->prepare($query);
-        $statement->bind_param("sdisssi", $nome, $prezzo, $disponibilità, $path, $descrizione,  $categoria,  $fornitore );
+        $statement->bind_param("sdisss", $nome, $prezzo, $disponibilità, $path, $descrizione,  $categoria);
         $statement->execute();
     }
 
@@ -243,6 +241,22 @@ class DatabaseHelper{
         $statement = $this->db->prepare("UPDATE Stato_ordine SET Descrizione=?, Data=CURDATE() WHERE IdOrdine=?");
         $statement->bind_param('si', $statoOrdine, $IdOrdine);
         $statement->execute();
+    }
+
+    public function modificaProdotto($id, $nome, $descrizione, $prezzo, $quantitàResidua, $categoria, $immagine){
+        $query = "UPDATE Prodotto SET NomeProdotto = ?, Prezzo = ?, QuantitaResidua = ?, Immagine = ?, Descrizione = ?, Categoria = ? WHERE IdProdotto = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("sdisssi", $nome, $prezzo, $quantitàResidua, $immagine, $descrizione, $categoria, $id);
+        $statement->execute();
+    }
+
+    public function getIdUtenteByOrdine($IdOrdine){
+        $query = "SELECT IdUtente FROM Ordine WHERE IdOrdine=?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $IdOrdine);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["IdUtente"];
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-    require_once("constants.php");
+    require("constants.php");
 
     if (!empty($_POST["username"]) && !empty( $_POST["password"])){
         $login_result = $db->checkLogin($_POST["username"], $_POST["password"]);

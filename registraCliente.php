@@ -1,6 +1,6 @@
 <?php
 
-    require_once("constants.php");
+    require("constants.php");
 
 
     if($_POST["Password"] != $_POST["RipetiPassword"]){
