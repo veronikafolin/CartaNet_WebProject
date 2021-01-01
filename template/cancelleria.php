@@ -1,23 +1,24 @@
 <section>
-    <div class="search-container" id="searchBar" style="float: right; margin:10px 10px 0px 0px;">
+    <div class="search-container" id="searchBar">
         <form class="form-inline" action="risultatiRicercaProdotti.php" method="GET">
+            <label for="searchRequest">Ricerca prodotti</label>
             <input class="form-control mr-sm-2" type="text" placeholder="Cerca..." name="searchRequest" id="searchRequest">
-            <button class="btn" type="submit" style="background-color: #6d6e71; color: white">Vai</button>
+            <button class="btn btn-info" type="submit">Vai</button>
         </form>
     </div>
 </section>
 
-<section style="margin: 80px; clear: both;">
-    <center><h2>Cancelleria</h2></center>
+<section>
+    <h2>Cancelleria</h2>
     <div class="container-fluid">
-        <div class="row" style="width: 100%"> 
+        <div class="row"> 
             <?php foreach($templateParams["prodottiCancelleria"] as $prodotto): ?>
-                <div class="col-sm-6 col-xl-2" style="padding: 0px">
+                <div class="col-6 col-xl-2">
                 <a href="prodotto.php?IdProdotto=<?php echo $prodotto["IdProdotto"]; ?>">
-                    <center><img src="<?php echo ".".$prodotto["Immagine"];?>" alt="<?php echo "Immagine di ".$prodotto["NomeProdotto"];?>" width="100" height="100"/>
-                    <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
+                    <img src="<?php echo ".".$prodotto["Immagine"];?>" alt="<?php echo "Immagine di ".$prodotto["NomeProdotto"];?>" width="100" height="100"/>
+                    <h3> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
                 </a>
-                    <p style="font-weight: bold"> <?php echo $prodotto["Prezzo"]." €" ; ?></p> </center>
+                    <p class="prezzo"> <?php echo $prodotto["Prezzo"]." €" ; ?></p> 
                 </div>
             <?php endforeach; ?>
         </div>

@@ -32,14 +32,27 @@ Venditore:
 Storico ordini          OK  V
 Modifica stato ordine   OK  V
 Dettaglio Prodotto      OK  V   
-Modifica Prodotto       
+Modifica Prodotto       OK  D
 Inserimento Prodotto    OK  D
 
 Notifiche:
 conferma ordine         OK  D
-cambio stato ordine 
+cambio stato ordine     OK  D
 ordine ricevuto         OK  D
 finita disponibilità    OK  D
 
 Se abbiamo tempo:
 reso e annullamento ordine da parte del cliente
+
+
+
+CSS 
+home.php        sistemare barra di ricerca per mobile 
+base.php       
+agende.php
+aggiungiprodottoform
+baseVenditore
+calendari
+cancelleria
+carrello
+dettaglio ordine

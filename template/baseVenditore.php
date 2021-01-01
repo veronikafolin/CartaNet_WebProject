@@ -9,32 +9,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/> 
+    <link rel="stylesheet" type="text/css" href="./css/style.css?ts=<?=time()?>&quot">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <header>
-        <h1> <center> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </center> </h1>
-            <?php if( isUserLoggedIn() == 2 ): ?>
-            <a href="logout.php" style="float:right; margin: 0 10px 10px 0"> <button style=" background-color: #6d6e71; border: none; color: white; padding: 12px 16px;  font-size: 16px; cursor: pointer;" ><i class="fa fa-sign-out"></i></button> </a>
-            <?php endif ?>
-        </div>
+        <h1> <img src="./res/Icone/CartaNet.jpeg" alt="CartaNet" width="180px" height="150px"/> </h1>
+        <?php if( isUserLoggedIn() == 2 ): ?>
+            <div class="ReservedAreaButtons"> 
+                <a href="logout.php"> <button class="ReservedButton"><i class="fa fa-sign-out"></i></button> </a>
+            </div>
+        <?php endif ?>
     </header>
 
-    <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#a3ddf2; clear:both;">
+    <nav class="navbar navbar-expand navbar-light">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="./gestioneprodotti.php">Gestione prodotti</a>
+                <a class="nav-link" href="./gestioneprodotti.php">Prodotti</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="./gestioneordini.php">Gestione ordini</a>
+                 <a class="nav-link" href="./gestioneordini.php">Ordini</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="notifiche.php">Le mie notifiche</a>
+                 <a class="nav-link" href="notifiche.php">Notifiche</a>
              </li>
          </ul>
     </nav> 
+
     <main>
     <?php
         if(isset($templateParams["nomeFile"])){
@@ -43,8 +45,8 @@
     ?>
     </main>
 
-    <footer style="text-align: center; border-top: 1px black solid; background-color: #a3ddf2; padding: 10px 0px;">
-        <p style="margin-top: 10px">  
+    <footer>
+        <p>  
             &#174 CartaNet S.r.l. <br>
             Via dell'Università, 50 47521 Cesena (FC)
         </p>
