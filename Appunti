@@ -47,6 +47,10 @@ reso e annullamento ordine da parte del cliente
 
 
 CSS 
+
+riguardare width e height in img
+cercare modo per bloccare il footer in basso
+
 home.php        sistemare barra di ricerca per mobile 
 base.php       
 agende.php
@@ -56,3 +60,7 @@ calendari
 cancelleria
 carrello
 dettaglio ordine
+gestione ordini
+gestione prodotti
+login-form
+miei ordini
