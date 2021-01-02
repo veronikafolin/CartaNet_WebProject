@@ -19,7 +19,9 @@
         <div class="ReservedAreaButtons"> 
             <?php if( isUserLoggedIn() == 1 ): ?>
             <div class="dropdown" style="display:inline">
-                    <button class="ReservedButton" type="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></button>
+                    <button class="ReservedButton" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="mieiOrdini.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">I miei ordini</a>
                         <a class="dropdown-item" href="notifiche.php">I miei messaggi</a>

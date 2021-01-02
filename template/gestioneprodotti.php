@@ -1,6 +1,5 @@
-
 <section>
-    <a href="aggiungiProdotto.php"> <button class="btn btn-primary" style="margin: 10px 0 0 10px" name="add" id="add"> Aggiungi nuovo prodotto </button></a>
+    <a href="aggiungiProdotto.php"> <button class="btn btn-primary" name="add" id="add"> Aggiungi nuovo prodotto </button></a>
 </section>
 
 <section>

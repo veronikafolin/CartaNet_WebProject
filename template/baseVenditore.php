@@ -26,6 +26,9 @@
     <nav class="navbar navbar-expand navbar-light">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a class="nav-link" href="./login.php">Home</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="./gestioneprodotti.php">Prodotti</a>
             </li>
             <li class="nav-item">

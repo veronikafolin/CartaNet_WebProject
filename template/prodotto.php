@@ -2,33 +2,37 @@
 $prodotto = $templateParams["prodotto"];
 ?>
 
-<section style="margin: 80px">
-<div class="container-fluid">
-    <div class="row" style="width: 100%"> 
-        <img class = "col-xl-4 col-sm-4" src="<?php echo ".".$prodotto["Immagine"];?>" alt="<?php echo "Immagine di ".$prodotto["NomeProdotto"];?>"/>
-        <div class= "col-xl-8 col-sm-8">
-            <h2 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h2>
-            <p> <?php echo $prodotto["Descrizione"]; ?> </p>
-            <p style="font-weight: bold"> <?php echo $prodotto["Prezzo"]." €" ; ?></p>
-            <?php
-            $userLogged = isUserLoggedIn();
-            switch($userLogged){
-                case 0:
-                    echo '<button onclick="alertLogIn()" type="button" class="btn btn-primary">Aggiungi al carrello</button>';
-                    break;
-                case 1:
-                    if($templateParams["disponibilita"] == 0){
-                        echo '<button onclick="alertSoldOut()" type="button" class="btn btn-primary disabled">Aggiungi al carrello</button>';
+<section class="prodotto">
+    <div class="container-fluid">
+    <h2> <?php echo $prodotto["NomeProdotto"]; ?> </h2>
+        <div class="row"> 
+            <img class = "col-12 col-xl-4" src="<?php echo ".".$prodotto["Immagine"];?>" alt="<?php echo "Immagine di ".$prodotto["NomeProdotto"];?>"/>
+            <div class= "col-12 col-xl-8">
+                <p> <?php echo $prodotto["Descrizione"]; ?> </p>
+                <p class="prezzo"> <?php echo $prodotto["Prezzo"]." €" ; ?></p>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center"> 
+            <div class="col-12 col-xl-3">
+                <?php
+                $userLogged = isUserLoggedIn();
+                switch($userLogged){
+                    case 0:
+                        echo '<button onclick="alertLogIn()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button>';
                         break;
-                    }
-                    echo '<a href="updateShoppingCart.php?IdProdotto='.$prodotto["IdProdotto"].'><button onclick="confirmAddingToShoppingCart()" type="button" class="btn btn-primary">Aggiungi al carrello</button></a>';
-                    break;
-                case 2:
-                    echo '<a href="modificaProdotto.php?IdProdotto='.$prodotto["IdProdotto"].'><button type="button" class="btn btn-primary">Modifica prodotto</button> </a>';
-                    break;
-            }
-            ?>
+                    case 1:
+                        if($templateParams["disponibilita"] == 0){
+                            echo '<button onclick="alertSoldOut()" type="button" class="form-control btn btn-primary disabled">Aggiungi al carrello</button>';
+                            break;
+                        }
+                        echo '<a href="updateShoppingCart.php?IdProdotto='.$prodotto["IdProdotto"].'><button onclick="confirmAddingToShoppingCart()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button></a>';
+                        break;
+                    case 2:
+                        echo '<a href="modificaProdotto.php?IdProdotto='.$prodotto["IdProdotto"].'><button type="button" class="form-control btn btn-primary">Modifica prodotto</button> </a>';
+                        break;
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
 </section>

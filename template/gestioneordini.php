@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <?php foreach($templateParams["ordini"] as $ordine): ?>
              <div class="row ordine"> 
-                    <div class="col-12">
+                    <div class="col-12 col-xl-6">
                         <p> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </p>
                         <p>
                         Ordinato da: <?php echo $ordine["Nome"]." ".$ordine["Cognome"]; ?> </br>
@@ -12,7 +12,7 @@
                         Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?>
                         </p> 
                     </div>
-                    <form class="form-inline col-12" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post"> 
+                    <form class="form-inline col-12 col-xl-6 justify-content-center align-items-center" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post"> 
                         <div class="form-group">
                             <label for="StatoOrdine">Modifica stato ordine:</label>
                             <select class="form-control" name="StatoOrdine" id="StatoOrdine">
