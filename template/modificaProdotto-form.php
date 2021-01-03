@@ -43,7 +43,7 @@ $prodotto = $templateParams["prodotto"];
             <input class="form-control btn btn-primary" id="modify" type="submit" name="modify" value="Modifica prodotto"/>
             </div>
             <div class="form-group">
-            <input class="form-control btn btn-warning" id="annulla" type="submit" name="modify" value="Annulla"/>
+            <a href="gestioneprodotti.php"> <button onclick="document.getElementById('Immagine').removeAttribute('required');" class="form-control btn btn-warning" id="annulla" >Annulla</button></a>
             </div>
         </form>
     </div>
