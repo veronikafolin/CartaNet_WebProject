@@ -17,4 +17,3 @@ function orderOK(){
 function updateOrderOK(){
       alert("Modifica stato dell'ordine effettuata!");
 }
-
