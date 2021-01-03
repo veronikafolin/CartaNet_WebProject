@@ -97,8 +97,4 @@ p.daLeggere{
     .ordine .form-group label{
         margin-right: 5px;
     }
-
-    div[class~="notifica"] button[name="SegnaLetta"]{
-        margin-top: 8%;
-    }
 }

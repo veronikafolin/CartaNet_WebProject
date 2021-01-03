@@ -5,8 +5,12 @@
         <p> Nessuna notifica presente </p>
         <?php else: ?>
             <?php foreach( $templateParams["notifiche"] as $notifica):?>
-                <div class="row notifica"> 
+                <div class="row notifica justify-content-center align-items-center"> 
+                    <?php if($notifica["Letto"] == 0): ?>
                     <div class="col-12 col-xl-9">
+                    <?php else: ?>
+                    <div class="col-12 col-xl-12">
+                    <?php endif ?>
                         <?php if($notifica["Letto"] == 0): ?>
                             <p class="daLeggere"> <?php echo $notifica["Oggetto"]?> </p>
                         <?php else: ?>
