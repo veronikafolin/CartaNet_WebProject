@@ -1,19 +1,18 @@
-
 <section>
-    <a href="aggiungiProdotto.php"> <button class="btn btn-primary" style="margin: 10px 0 0 10px" name="add" id="add"> Aggiungi nuovo prodotto </button></a>
+    <a href="aggiungiProdotto.php"> <button class="btn btn-primary" name="add" id="add"> Aggiungi nuovo prodotto </button></a>
 </section>
 
-<section style="margin: 80px; clear: both;">
-    <center><h2>I miei prodotti</h2></center>
+<section>
+    <h2>I miei prodotti</h2>
     <div class="container-fluid">
-    <div class="row" style="width: 100%"> 
+    <div class="row"> 
         <?php foreach($templateParams["prodotti"] as $prodotto): ?>
-            <div class="col-sm-6 col-xl-2" style="padding: 0px">
+            <div class="col-6 col-xl-2">
             <a href="prodotto.php?IdProdotto=<?php echo $prodotto["IdProdotto"]; ?>" title="Link per dettaglio prodotto">
-                <center><img src=<?php echo ".".$prodotto["Immagine"];?> alt=<?php echo "Immagine di ".$prodotto["NomeProdotto"];?> width="100" height="100"/>
-                <h3 style="font-size: 16pt"> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
+                <img src=<?php echo ".".$prodotto["Immagine"];?> alt=<?php echo "Immagine di ".$prodotto["NomeProdotto"];?> width="100" height="100"/>
+                <h3> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
             </a>
-                <p style="font-weight: bold"> <?php echo $prodotto["Prezzo"]." €" ; ?></p> </center>
+                <p class="prezzo"> <?php echo $prodotto["Prezzo"]." €" ; ?></p> 
              </div>
          <?php endforeach; ?>
     </div>

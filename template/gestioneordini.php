@@ -1,10 +1,10 @@
-<section style="margin: 80px; clear: both;">
-    <center><h2>Storico ordini</h2></center>
+<section>
+    <h2>Storico ordini</h2>
     <div class="container-fluid">
         <?php foreach($templateParams["ordini"] as $ordine): ?>
-             <div class="row" style="width: 100%; border-bottom: 1px solid black; padding: 10px 0px;"> 
-                    <div class="col-sm-3 col-xl-6" style="padding: 0px">
-                        <h3> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </h3>
+             <div class="row ordine"> 
+                    <div class="col-12 col-xl-6">
+                        <p> Id Ordine: <?php echo $ordine["IdOrdine"]; ?> </p>
                         <p>
                         Ordinato da: <?php echo $ordine["Nome"]." ".$ordine["Cognome"]; ?> </br>
                         Data Ordine: <?php echo $ordine["DataOrdine"]; ?> </br>
@@ -12,10 +12,10 @@
                         Totale Ordine: <?php echo $ordine["Totale"]." €" ; ?>
                         </p> 
                     </div>
-                    <form class="col-sm-3 col-xl-6" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post" style="margin-top: 20px"> 
-                        <div class="form-group" >
-                            <label for="StatoOrdine" style="display:inline">Modifica stato ordine:</label>
-                            <select style="height:auto; width:auto;" class="form-control" name="StatoOrdine" id="StatoOrdine">
+                    <form class="form-inline col-12 col-xl-6 justify-content-center align-items-center" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post"> 
+                        <div class="form-group">
+                            <label for="StatoOrdine">Modifica stato ordine:</label>
+                            <select class="form-control" name="StatoOrdine" id="StatoOrdine">
                                 <option value="Confermato">Confermato</option>
                                 <option value="In Consegna">In Consegna</option>
                                 <option value="Consegnato">Consegnato</option>
