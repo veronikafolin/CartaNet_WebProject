@@ -15,13 +15,15 @@
             </div>
         <?php endforeach; ?>
         <?php if($totaleCarrello !=0): ?>
-            <div class="row"> 
+            <div class="row">
                 <p class="prezzo">Totale carrello: <?php echo $totaleCarrello."€" ?></p>
             </div>
-            <div class="row"> 
-                <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
-                <button onclick="orderOK()" type="button" class="btn btn-primary">Ordina</button>
-                </a>
+            <div class="row justify-content-center"> 
+                <div class="col-12 col-xl-3">
+                    <a href="orderOK.php?IdUtente=<?php echo $_SESSION["IdUtente"]; ?>">
+                    <button onclick="orderOK()" type="button" class="form-control btn btn-primary">Ordina</button>
+                    </a>
+                </div>
             </div>
         <?php endif; ?>
         <?php if($totaleCarrello ==0): ?>

@@ -1,9 +1,14 @@
-#searchBar{
-    float: right;
+html, body{
+    height: 100%;
+}
+
+main{
+    min-height: 100%;
 }
 
 label[for="searchRequest"]{
     visibility: hidden;
+    width: 0%;
 }
 
 section.prodotti{
@@ -15,6 +20,12 @@ section.prodotti{
 section{
     margin: 30px; 
     clear: both;
+}
+
+section#searchBar{
+    padding: 0%;
+    margin: 10px;
+    float: right;
 }
 
 section > h2{

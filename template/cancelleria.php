@@ -1,9 +1,9 @@
-<section>
-    <div class="search-container" id="searchBar">
+<section id="searchBar">
+    <div class="search-container">
         <form class="form-inline" action="risultatiRicercaProdotti.php" method="GET">
             <label for="searchRequest">Ricerca prodotti</label>
-            <input class="form-control mr-sm-2" type="text" placeholder="Cerca..." name="searchRequest" id="searchRequest">
-            <button class="btn btn-info" type="submit">Vai</button>
+            <input class="col-9 col-xl-8 form-control mr-2" type="text" placeholder="Cerca..." name="searchRequest" id="searchRequest">
+            <button class="col-2 col-xl-2 btn btn-info" type="submit">Vai</button>
         </form>
     </div>
 </section>
