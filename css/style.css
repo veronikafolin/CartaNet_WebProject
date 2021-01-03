@@ -84,7 +84,7 @@ p.daLeggere{
     width: fit-content;
 }
 
-@media only screen and (min-width: 1200px){
+@media screen and (min-width: 768px){
     section.carrello img{
         max-width: 80%;
         max-height: 80%;
@@ -96,5 +96,9 @@ p.daLeggere{
 
     .ordine .form-group label{
         margin-right: 5px;
+    }
+
+    div[class~="notifica"] button[name="SegnaLetta"]{
+        margin-top: 8%;
     }
 }

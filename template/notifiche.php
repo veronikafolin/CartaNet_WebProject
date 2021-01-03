@@ -5,7 +5,7 @@
         <p> Nessuna notifica presente </p>
         <?php else: ?>
             <?php foreach( $templateParams["notifiche"] as $notifica):?>
-                <div class="row notifica justify-content-center align-items-center"> 
+                <div class="row notifica"> 
                     <div class="col-12 col-xl-9">
                         <?php if($notifica["Letto"] == 0): ?>
                             <p class="daLeggere"> <?php echo $notifica["Oggetto"]?> </p>
@@ -15,9 +15,11 @@
                         <p>Data: <?php echo $notifica["Data"]?> </br>
                         <?php echo $notifica["Testo"]?> </p>
                     </div>
+                    <?php if($notifica["Letto"] == 0):?>
                     <div class="col-12 col-xl-3">
                     <a href="leggiNotifica.php?IdNotifica=<?php echo $notifica["IdNotifica"]; ?>" > <button type="button" class="form-control btn btn-primary" name="SegnaLetta"> Segna come letta </button> </a>
                     </div>
+                    <?php endif ?>
                 </div>
             <?php endforeach ?>
         <?php endif ?>
