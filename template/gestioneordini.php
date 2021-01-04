@@ -14,8 +14,8 @@
                     </div>
                     <form class="form-inline col-12 col-xl-6 justify-content-center align-items-center" action="updateStatoOrdine.php?IdOrdine=<?php echo $ordine["IdOrdine"];?>" method="post"> 
                         <div class="form-group">
-                            <label for="StatoOrdine">Modifica stato ordine:</label>
-                            <select class="form-control" name="StatoOrdine" id="StatoOrdine">
+                            <label for="StatoOrdine<?php echo $ordine["IdOrdine"]; ?>">Modifica stato ordine:</label>
+                            <select class="form-control" name="StatoOrdine" id="StatoOrdine<?php echo $ordine["IdOrdine"]; ?>">
                                 <option value="Confermato">Confermato</option>
                                 <option value="In Consegna">In Consegna</option>
                                 <option value="Consegnato">Consegnato</option>

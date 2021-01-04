@@ -24,7 +24,7 @@ $prodotto = $templateParams["prodotto"];
                 <input class="form-control" type="number" step="0.01" id="Prezzo" name="Prezzo" value="<?php echo $prodotto["Prezzo"]?>" required/>
             </div>
             <div class="form-group">
-                <label for="Disponibilità">Disponibilità:</label>
+                <label for="QuantitàResidua">Disponibilità:</label>
                 <input class="form-control" type="number" id="QuantitàResidua" name="QuantitàResidua" value="<?php echo $prodotto["QuantitaResidua"] ?>" required/>
             </div>
             <div class="form-group">
@@ -43,7 +43,7 @@ $prodotto = $templateParams["prodotto"];
             <input class="form-control btn btn-primary" id="modify" type="submit" name="modify" value="Modifica prodotto"/>
             </div>
             <div class="form-group">
-            <a href="gestioneprodotti.php"> <button onclick="document.getElementById('Immagine').removeAttribute('required');" class="form-control btn btn-warning" id="annulla" >Annulla</button></a>
+            <a href="gestioneprodotti.php"> <button onclick="document.getElementById('Immagine').removeAttribute('required');" class="form-control btn btn-warning" id="annulla" name="annulla" >Annulla</button></a>
             </div>
         </form>
     </div>

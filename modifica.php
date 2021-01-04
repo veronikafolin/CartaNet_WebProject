@@ -3,7 +3,7 @@
     require("constants.php");
 
     if(isUserLoggedIn() == 2){
-        if(isset($_POST["Annulla"])){
+        if(isset($_POST["annulla"])){
             header("location:./gestioneprodotti.php");
         }else{
             $immagine = '/res/'.$_POST["Categoria"].'/'.$_POST["Immagine"];
