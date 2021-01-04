@@ -4,10 +4,10 @@ $prodotto = $templateParams["prodotto"];
 
 <section>
     <div class="container-fluid">
-        <div class="nomeProdotto row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
             <h2> <?php echo $prodotto["NomeProdotto"]; ?> </h2>
         </div>
-        <div class="row"> 
+        <div class="dettagliProdotto row"> 
             <img class = "col-12 col-xl-4" src="<?php echo ".".$prodotto["Immagine"];?>" alt="<?php echo "Immagine di ".$prodotto["NomeProdotto"];?>"/>
             <div class= "col-12 col-xl-8">
                 <p> <?php echo $prodotto["Descrizione"]; ?> </p>
