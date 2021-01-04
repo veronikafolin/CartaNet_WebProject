@@ -14,24 +14,23 @@ $prodotto = $templateParams["prodotto"];
         </div>
         <div class="row justify-content-center align-items-center"> 
             <div class="col-12 col-xl-3">
-                <?php
-                $userLogged = isUserLoggedIn();
-                switch($userLogged){
-                    case 0:
-                        echo '<button onclick="alertLogIn()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button>';
-                        break;
-                    case 1:
-                        if($templateParams["disponibilita"] == 0){
-                            echo '<button onclick="alertSoldOut()" type="button" class="form-control btn btn-primary disabled">Aggiungi al carrello</button>';
-                            break;
-                        }
-                        echo '<a href="updateShoppingCart.php?IdProdotto='.$prodotto["IdProdotto"].'><button onclick="confirmAddingToShoppingCart()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button></a>';
-                        break;
-                    case 2:
-                        echo '<a href="modificaProdotto.php?IdProdotto='.$prodotto["IdProdotto"].'><button type="button" class="form-control btn btn-primary">Modifica prodotto</button> </a>';
-                        break;
-                }
-                ?>
+
+                <?php if(isUserLoggedIn() == 0): ?>
+                    <button onclick="alertLogIn()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button>
+                <?php endif ?>
+
+                <?php if(isUserLoggedIn() == 1): ?>
+                    <?php if($templateParams["disponibilita"] == 0): ?>
+                        <button onclick="alertSoldOut()" type="button" class="form-control btn btn-primary disabled">Aggiungi al carrello</button>
+                    <?php else: ?>
+                        <a href="updateShoppingCart.php?IdProdotto=<?php echo $prodotto['IdProdotto']?>"><button onclick="confirmAddingToShoppingCart()" type="button" class="form-control btn btn-primary">Aggiungi al carrello</button></a>
+                    <?php endif ?>
+                <?php endif ?>
+                
+                <?php if(isUserLoggedIn() == 2): ?>
+                    <a href="modificaProdotto.php?IdProdotto=<?php echo $prodotto['IdProdotto'] ?>"><button type="button" class="form-control btn btn-primary">Modifica prodotto</button> </a>'
+                <?php endif ?>
+
             </div>
         </div>
     </div>
