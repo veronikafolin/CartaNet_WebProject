@@ -11,15 +11,14 @@ label[for="searchRequest"]{
     width: 0%;
 }
 
-section.prodotti{
-    margin: 50px; 
-    clear: both;
-    text-align: center;
-}
 
 section{
     margin: 30px; 
     clear: both;
+}
+
+div.nomeProdotto{
+    margin-bottom: 20px;
 }
 
 section#searchBar{
