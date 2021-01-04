@@ -1,11 +1,13 @@
 <?php
 
     require("constants.php");
-
+   
     if (!empty($_POST["username"]) && !empty( $_POST["password"])){
+        
         $login_result = $db->checkLogin($_POST["username"], $_POST["password"]);
-        if(count($login_result) == 0){
-            $templateParams["erroreLogin"] = "Errore! Controllare username o password";
+        $bruteForce = $db->checkBruteForce($_POST["username"]);
+        if(count($login_result) == 0 || $bruteForce ){
+            $db->registerFailedAttempts($_POST["username"]);
         }else{
             registerLoggedUser($login_result[0]);
         }

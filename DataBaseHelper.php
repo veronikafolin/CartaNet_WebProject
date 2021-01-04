@@ -258,5 +258,30 @@ class DatabaseHelper{
         $result = $statement->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["IdUtente"];
     }
+
+    public function registerFailedAttempts($user){
+        $query = "INSERT INTO Login_attempts(Time, Email) VALUES (?, ?)";
+        $statement = $this->db->prepare($query);
+        $now = time();
+        $statement->bind_param("ss", $now, $user);
+        $res = $statement->execute();
+    }
+
+    public function checkBruteForce($user){
+        $now = time();
+        $checkWindow = $now - 60 * 60; 
+        $query = "SELECT count(*) as NumTentativi FROM Login_attempts WHERE Email=? AND Time > ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ss", $user, $checkWindow);
+        $statement->execute();
+        $result = $statement->get_result();
+        $tentativi = $result->fetch_all(MYSQLI_ASSOC)[0]["NumTentativi"];
+        if($tentativi >= 3){
+            $bruteForce = true;
+        }else{
+            $bruteForce = false;
+        }
+        return $bruteForce;
+    }
 }
 ?>
