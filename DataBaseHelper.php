@@ -167,7 +167,7 @@ class DatabaseHelper{
 
             //Notifica al venditore
             if($quantitàResidua == 0){
-                $oggetto = "Finita disponibilità prodotto".$prodotto["IdProdotto"];
+                $oggetto = "Finita disponibilità prodotto ".$prodotto["IdProdotto"];
                 $testo = "La disponibilità del prodotto si è azzerata, provvedere al rifornimento";
                 $letto = 0;
                 $IdUtente = 2;
@@ -280,6 +280,13 @@ class DatabaseHelper{
             $bruteForce = false;
         }
         return $bruteForce;
+    }
+
+    public function removeFromShoppingCart($IdProdotto, $IdUtente){
+        $sql="DELETE FROM Prodotto_in_carrello WHERE IdProdotto = ? AND IdUtente = ?";
+        $statement = $this->db->prepare($sql);
+        $statement->bind_param('ii', $IdProdotto, $IdUtente);
+        $statement->execute();
     }
 }
 ?>

@@ -10,7 +10,9 @@
                     <h3> <?php echo $prodotto["NomeProdotto"]; ?> </h3>
                     <p>Quantità: <?php echo $prodotto["Quantita"]; ?> <br/>
                     <?php $totale = $prodotto["Prezzo"] * $prodotto["Quantita"]; ?>
-                    Totale: <?php echo $totale." €" ; ?></p> 
+                    Totale: <?php echo $totale." €" ; ?> <br/>
+                    <a href="rimuoviProdotto.php?IdProdotto=<?php echo $prodotto['IdProdotto']?>" id="rimuoviProdotto">Rimuovi prodotto</a>
+                    </p> 
                 </div>
             </div>
         <?php endforeach; ?>

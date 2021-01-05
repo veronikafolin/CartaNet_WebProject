@@ -97,6 +97,13 @@ p.daLeggere{
     width: fit-content;
 }
 
+#rimuoviProdotto{
+    color: black;
+    text-decoration: underline;
+    margin: 0;
+    padding: 0;
+}
+
 @media screen and (min-width: 768px){
     section.carrello img{
         max-width: 80%;
