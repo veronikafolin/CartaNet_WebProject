@@ -98,7 +98,7 @@ p.daLeggere{
 }
 
 #rimuoviProdotto{
-    color: black;
+    color: red;
     text-decoration: underline;
     margin: 0;
     padding: 0;
