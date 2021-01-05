@@ -25,15 +25,11 @@
                     <input class="form-control" type="text" id="Indirizzo" name="Indirizzo" required/>
                 </div>
                 <div class="form-group">
-                    <label for="Password">Password:</label>
-                    <input class="form-control" type="password" id="Password" name="Password" required/>
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="Password" required/>
                 </div>
                 <div class="form-group">
-                    <label for="RipetiPassword">Ripeti Password:</label>
-                    <input class="form-control" type="password" id="RipetiPassword" name="RipetiPassword" required/>
-                </div>
-                <div class="form-group">
-                <input class="form-control btn btn-primary" id="signup" type="submit" name="submit" value="Registrati"/>
+                <input class="form-control btn btn-primary" onclick="hashPWD()" id="signup" type="submit" name="submit" value="Registrati"/>
                 </div>
             </form>
         </div>

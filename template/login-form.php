@@ -15,8 +15,7 @@
                     <input class="form-control" type="password" id="password" name="password" required/>
                 </div>
                 <div class="form-group">
-                <input class="form-control btn btn-primary" type="submit" name="submit" value="Login"/>
-                <!-- onclick="formhash(this.form, this.form.password);" -->
+                <input class="form-control btn btn-primary" onclick="hashPWD()" type="submit" name="submit" value="Login"/>
                 </div>
                 <a href="signup.php">Non sei ancora registrato? Clicca qui</a>
             </form>
