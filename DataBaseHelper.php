@@ -49,21 +49,38 @@ class DatabaseHelper{
     }
 
     public function checkLogin($username, $password){
-        $query = "SELECT U.IdUtente, U.Nome, C.Email, C.Password, U.Tipo FROM Utente U, Credenziali C WHERE U.Email = C.Email AND C.Email = ? AND C.Password = ?";
+        $query="SELECT Salt FROM Credenziali WHERE Email = ?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param('ss', $username, $password);
+        $statement->bind_param('s', $username);
         $statement->execute();
         $result = $statement->get_result();
         $statement->close();
+        $result = $result->fetch_all(MYSQLI_ASSOC);
+        $salt="";
+        if(count($result) != 0){
+            $salt = $result[0]["Salt"];
+        }
+        
+
+        $query = "SELECT U.IdUtente, U.Nome, C.Email, C.Password, U.Tipo FROM Utente U, Credenziali C WHERE U.Email = C.Email AND C.Email = ? AND C.Password = ?";
+        $statement = $this->db->prepare($query);
+        $hashedPassword = hash("sha256", $password.$salt, false);
+        $statement->bind_param('ss', $username, $hashedPassword);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
 
 
     public function registraCliente($nome, $cognome, $email, $indirizzo, $tipo, $password){
         
-        $queryCredenziali = "INSERT INTO Credenziali (Email, Password) VALUES (?, ?)";
+        $salt = hash("sha256", uniqid(mt_rand(1, mt_getrandmax()), true) ,false);
+        $hashedPassword = hash("sha256", $password.$salt, false);
+        $queryCredenziali = "INSERT INTO Credenziali (Email, Password, Salt) VALUES (?, ?, ?)";
         $statement = $this->db->prepare($queryCredenziali);
-        $statement->bind_param("ss", $email, $password);
+        $statement->bind_param("sss", $email, $hashedPassword, $salt);
         $statement->execute();
         
         $queryUtente = "INSERT INTO Utente (Email, Nome, Cognome, Indirizzo, Tipo) VALUES(?, ?, ?, ?, ?)";
